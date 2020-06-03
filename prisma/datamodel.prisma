@@ -1,0 +1,20 @@
+type Product {
+  id : ID! @id
+  barcode : String!
+  image : String!
+  description : String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Home{
+  id : ID! @id
+  owner : String!
+  city : String!
+  region : String!
+  number : String!
+  cap : String!
+  products : [Product]! @relation(link : TABLE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

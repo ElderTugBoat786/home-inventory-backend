@@ -1,0 +1,37 @@
+type Query {
+  info: String!
+  products : [Product!]!
+  homes : [Home!]!
+  homeProducts: [Product!]!
+}
+
+type Mutation {
+  addProduct(barcode: String!, image: String!, description: String!): Product!
+  addHomes(owner: String!, city : String!, region : String!, number: String!, cap : String!) : Home!
+  addHomeProduct( homeId : String!, productId : String!, quantity : Int ) : Home!
+}
+
+
+type Product {
+  id : ID!
+  barcode : String!
+  image : String!
+  description : String!
+}
+
+type Home{
+  id : ID!
+  owner : String!
+  city : String!
+  region : String!
+  number : String!
+  cap : String!
+  products : [Product]
+}
+
+type HomeProducts{
+  id : ID!
+  home : [Home!]!
+  product : [Product!]!
+  quantity : Int!
+}

@@ -32,6 +32,7 @@ const resolvers = {
       })
     },
     addHomeProduct : (root,args,context) => {
+      // Got error : Could not find argument products for type Home
       return context.prisma.updateHome({
         products : {
           connect : { id : args.productId}

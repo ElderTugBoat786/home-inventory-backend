@@ -7,11 +7,12 @@ const resolvers = {
     products: (root,args,context) => {
       return context.prisma.products();
     },
-    homes: (root,args,context) => {
+    homes: (root,args,context,info) => {
+      console.log(context.prisma);
       return context.prisma.homes();
     },
     homeProducts : (root,args,context) => {
-      return context.prisma.homeProductses();
+      return context.prisma.home({id : args.id }).products()
     }
   },
   Mutation : {
@@ -32,13 +33,14 @@ const resolvers = {
       })
     },
     addHomeProduct : (root,args,context) => {
-      // Got error : Could not find argument products for type Home
       return context.prisma.updateHome({
-        products : {
-          connect : { id : args.productId}
+        data : {
+          products : {
+            connect : { id : args.productId}
+            }
+          },where : {
+            id : args.homeId
           }
-        },{
-          id : args.homeId
         }
       )
     }
